@@ -16,7 +16,7 @@ Route::get('/contact', function () {
     return ("Tentang Kami");
 });
 Route::get('/', function () {
-    return view('About');
+    return view('welcome');
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
