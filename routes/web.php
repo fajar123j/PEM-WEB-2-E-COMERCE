@@ -3,32 +3,42 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::get('/home', function () {
-    return ("Halaman utama");
+Route::get('/', function(){
+    return view('web.hompage');
 });
-Route::get('/profile', function () {
-    return ("Daftar Menu");
+Route::get('products', function(){
+    return view('web.products');
 });
-Route::get('/contact', function () {
-    return ("Contact Kami");
+Route::get('product/{slug}', function($slug){
+    return 'Halaman single product - '.$slug;
 });
-Route::get('/contact', function () {
-    return ("Tentang Kami");
+Route::get('categories', function(){
+    return view('web.categories');
 });
-Route::get('/', function () {
-    return view('About');
-})->name('home');
-
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
-
-    Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
-    Volt::route('settings/password', 'settings.password')->name('settings.password');
-    Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+Route::get('categories/{slug}', function(){
+    return 'Halaman single category - '.$slug;
+});
+Route::get('cart', function(){
+    return 'Halaman cart';
+});
+Route::get('checkout', function(){
+    return 'Halaman checkout';
 });
 
-require __DIR__.'/auth.php';
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
+
+// Route::view('dashboard', 'dashboard')
+//     ->middleware(['auth', 'verified'])
+//     ->name('dashboard');
+
+// Route::middleware(['auth'])->group(function () {
+//     Route::redirect('settings', 'settings/profile');
+
+//     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
+//     Volt::route('settings/password', 'settings.password')->name('settings.password');
+//     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+// });
+
+// require _DIR_.'/auth.php';
