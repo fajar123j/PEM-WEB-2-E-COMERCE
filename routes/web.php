@@ -15,6 +15,7 @@ Route::get('product/{slug}', function($slug){
 Route::get('categories', function(){
     return view('web.categories');
 });
+<<<<<<< HEAD
 Route::get('categories/{slug}', function(){
     return 'Halaman single category - '.$slug;
 });
@@ -23,6 +24,22 @@ Route::get('cart', function(){
 });
 Route::get('checkout', function(){
     return 'Halaman checkout';
+=======
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    Route::redirect('settings', 'settings/profile');
+
+    Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
+    Volt::route('settings/password', 'settings.password')->name('settings.password');
+    Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+>>>>>>> f3539cd8512693c452655f915e43734841dc0da3
 });
 
 // Route::get('/', function () {
